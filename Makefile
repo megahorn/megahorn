@@ -11,7 +11,7 @@ deps:
 
 build: deps
 	go get github.com/mitchellh/gox
-	gox -build-toolchain
+	gox -build-toolchain -os="linux darwin" -arch="amd64"
 	mkdir -p build/Linux && GOOS=linux go build -ldflags "-X main.Version $(VERSION) -X main.Build $(BUILD)" -o build/Linux/$(NAME)
 	mkdir -p build/Darwin && GOOS=darwin go build -ldflags "-X main.Version $(VERSION) -X main.Build $(BUILD)" -o build/Darwin/$(NAME)
 	rm -rf release && mkdir release
