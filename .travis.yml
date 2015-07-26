@@ -1,0 +1,16 @@
+language: go
+go:
+- 1.4.2
+install: make deps
+before_deploy: make build
+deploy:
+  provider: releases
+  api_key:
+    secure: DvSVdtCkZJt0DeaWdnqTzFIq4wjwE+eSnW0cNHvYf1M3Zi0Ij+reXaS9e/31Bzq1YxX8EVzDCS2+a0A8HWyUPKLxFFWNeCjOprtQGNFp9QCFRM6ahQ9gpASiQL+3/fC0i19xK27nanfYRPXaMZzwutjG5nHpv6nYZTTUn5Za4CuLHjnnJ3GQnZ0rHn3f9wrPVyVh/N+MPJDPn5+5uL5ErOjoCEdMh5kmq64137dHPY/54Gxf9nOmQuBzjBr4r7bHsRgnvJSjpZqZoCIu47juArmWENHMiTnH+5DsSKsV7VNyJIve9y2lTr2Ff3Actz5hTpVlAzZCOO6/1sx4sCBZVTSelvhOh3UWQof/itycnqsvqhXI0cu4AUes1lBnlITG/A5f07oUWZjo3DtLvE630eQrt2++WZXFNAwuiDx72gj23mO/Symxwd3aYXN3AixALLa5xJsPZlqSBtDVhyKrwUy1jNjHQE+MNJI/uh7yzx7Mn7h4xhvSwZGVDwiNYta6+7rhvUNu8VXrnjXYwFIBw7v7W8e0kw4805qr2s/cZOpvIMl740V4cO9ktPiwVCpxOd8hr34xDaOPusDWLEHHPMg93Ob1Im+P8VccRbcMIzkouJxAPfRcNYmeVuvALT0LRQo8leYazayTzT/XrZK+/ldvI7TXj7EXCIoOyuxH+mY=
+  skip_cleanup: true
+  file:
+    - release/webminal_linux_x86_64.tgz
+    - release/webminal_darwin_x86_64.tgz
+  on:
+    tags: true
+    repo: webminal/webminal

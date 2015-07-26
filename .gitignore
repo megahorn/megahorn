@@ -1,3 +1,5 @@
 webminal.json
 *.log
 /webminal
+/build
+/release
