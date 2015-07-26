@@ -22,6 +22,8 @@ func New(name string) Driver {
 		return &FileDriver{}
 	case "redis":
 		return &RedisDriver{}
+	case "fluent":
+		return &FluentDriver{}
 	case "pusher":
 		return &PusherDriver{}
 	}
