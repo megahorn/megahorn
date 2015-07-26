@@ -4,7 +4,6 @@ import (
 	"errors"
 	"github.com/pusher/pusher-http-go"
 	"sync"
-	"time"
 )
 
 type PusherDriver struct {
