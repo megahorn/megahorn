@@ -16,8 +16,18 @@ func (f *FileDriver) Configure(config map[string]string) (err error) {
 		return errors.New("path is required")
 	}
 
+	mode, ok := config["mode"]
+	if !ok {
+		mode = "append"
+	}
+
 	f.path = path
-	f.File, err = os.Create(path)
+
+	if mode == "append" {
+		f.File, err = os.OpenFile(path, os.O_RDWR|os.O_APPEND, 0666)
+	} else {
+		f.File, err = os.Create(path)
+	}
 
 	return
 }

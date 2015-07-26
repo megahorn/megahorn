@@ -11,9 +11,17 @@ type Driver interface {
 }
 
 func New(name string) Driver {
-	switch strings.ToLower(name) {
+	driverName := strings.ToLower(name)
+
+	if n := strings.IndexRune(driverName, '.'); n > 0 {
+		driverName = driverName[0:n]
+	}
+
+	switch strings.ToLower(driverName) {
 	case "file":
 		return &FileDriver{}
+	case "redis":
+		return &RedisDriver{}
 	case "pusher":
 		return &PusherDriver{}
 	}

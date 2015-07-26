@@ -7,6 +7,7 @@ import (
 	"io"
 	"os"
 	"os/exec"
+	"runtime"
 	"sync"
 	"syscall"
 )
@@ -17,6 +18,8 @@ var (
 )
 
 func main() {
+	runtime.GOMAXPROCS(runtime.NumCPU())
+
 	configPath := flag.String("c", "webminal.json", "config json file path")
 
 	flag.Usage = func() {

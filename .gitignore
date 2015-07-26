@@ -1,1 +1,3 @@
 webminal.json
+*.log
+/webminal
