@@ -14,20 +14,33 @@ type PusherDriver struct {
 	sendQueue chan string
 }
 
-func (p *PusherDriver) Configure(config map[string]string) error {
+func (p *PusherDriver) Configure(config map[string]string) (err error) {
+	url, urlOk := config["url"]
+
 	appID, ok := config["app_id"]
-	if !ok {
+	if !ok && !urlOk {
 		return errors.New("app_id is required")
 	}
 
 	key, ok := config["key"]
-	if !ok {
+	if !ok && !urlOk {
 		return errors.New("key is required")
 	}
 
 	secret, ok := config["secret"]
-	if !ok {
+	if !ok && !urlOk {
 		return errors.New("secret is required")
+	}
+
+	secureOpt := true
+	secure, ok := config["secure"]
+	if ok && secure == "off" {
+		secureOpt = false
+	}
+
+	host, ok := config["host"]
+	if !ok {
+		host = ""
 	}
 
 	channel, ok := config["channel"]
@@ -40,10 +53,20 @@ func (p *PusherDriver) Configure(config map[string]string) error {
 		return errors.New("event is required")
 	}
 
-	p.client = &pusher.Client{
-		AppId:  appID,
-		Key:    key,
-		Secret: secret,
+	if urlOk {
+		p.client, err = pusher.ClientFromURL(url)
+
+		if err != nil {
+			return
+		}
+	} else {
+		p.client = &pusher.Client{
+			AppId:  appID,
+			Key:    key,
+			Secret: secret,
+			Secure: secureOpt,
+			Host:   host,
+		}
 	}
 
 	p.channel = channel
