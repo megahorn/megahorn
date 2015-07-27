@@ -92,6 +92,8 @@ func main() {
 		os.Stdin.Close()
 		runner := exec.Command(cmd, args...)
 
+		runner.Dir = config.WorkingDir
+		runner.Env = config.Environments()
 		runner.Stdout = fakeStdout
 		runner.Stderr = fakeStderr
 
