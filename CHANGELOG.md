@@ -1,5 +1,13 @@
 ## Change Log
 
+### v0.2.0 (2015/07/27 13:37 +00:00)
+- [a27c36a](https://github.com/webminal/webminal/commit/a27c36a9c5904f27ed7a38d43aeeae37b3d2f905) v0.2.0 (@rosylilly)
+- [425ec92](https://github.com/webminal/webminal/commit/425ec9222d7ab4d672d6b950994ec9808576fada) Fix redis blocking bug (@rosylilly)
+- [f55dfbe](https://github.com/webminal/webminal/commit/f55dfbef75c766727a641e1267079d536ad9714c) Parallel close (@rosylilly)
+- [2dd8587](https://github.com/webminal/webminal/commit/2dd85878732932938c45698c40dda7927ac0b060) Support working dir and config (@rosylilly)
+- [98ec972](https://github.com/webminal/webminal/commit/98ec9723ff9a18941f16056797dd3a96bb388331) Fix makefile (@rosylilly)
+- [85ee608](https://github.com/webminal/webminal/commit/85ee60879c301c4ec2b3f8fc68e14d4581ac61f4) Update CHANGELOG.md (@rosylilly)
+
 ### v0.1.0 (2015/07/26 05:39 +00:00)
 - [5b6de8f](https://github.com/webminal/webminal/commit/5b6de8f0979bf42ba67bde6da41a447d07776cbe) v0.1.0 (@rosylilly)
 - [36a2af9](https://github.com/webminal/webminal/commit/36a2af910138247faa958daf1555a76515137fc5) Implement fluent driver (@rosylilly)
