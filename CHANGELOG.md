@@ -1,5 +1,10 @@
 ## Change Log
 
+### v0.3.0 (2015/07/27 13:59 +00:00)
+- [8adb056](https://github.com/megahorn/megahorn/commit/8adb056b7c1854375a5b36e8f72b7b519eed8488) v0.3.0 (@rosylilly)
+- [aa85c40](https://github.com/megahorn/megahorn/commit/aa85c401905f81dba86b6224ecd910e09139a55f) Rename project: webminal -> megahorn (@rosylilly)
+- [04bdf69](https://github.com/megahorn/megahorn/commit/04bdf696f88cb56e53e16b71f95a2f2f45e8e42f) Update CHANGELOG.md (@rosylilly)
+
 ### v0.2.0 (2015/07/27 13:37 +00:00)
 - [a27c36a](https://github.com/megahorn/megahorn/commit/a27c36a9c5904f27ed7a38d43aeeae37b3d2f905) v0.2.0 (@rosylilly)
 - [425ec92](https://github.com/megahorn/megahorn/commit/425ec9222d7ab4d672d6b950994ec9808576fada) Fix redis blocking bug (@rosylilly)
