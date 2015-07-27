@@ -22,10 +22,11 @@ release:
 ifeq ($(shell git diff --shortstat 2> /dev/null | tail -n1),)
 	git tag -f -s v$(VERSION)
 	git push --tags --force
-	git push --all
+	git push
 	github-changes -o webminal -r webminal --use-commit-body --no-merges
 	git add CHANGELOG.md
 	git commit -m "Update CHANGELOG.md"
+	git push
 else
 	@echo "Please cleanup working directory." && exit 1
 endif
