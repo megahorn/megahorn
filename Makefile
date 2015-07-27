@@ -1,7 +1,7 @@
 .PHONEY: deps build test release all
 .DEFAULT_GOAL := all
 
-NAME=webminal
+NAME=megahorn
 ARCH=$(shell uname -m)
 VERSION=$(shell cat VERSION)
 BUILD=$(shell git rev-parse --short HEAD)
@@ -23,7 +23,7 @@ ifeq ($(shell git diff --shortstat 2> /dev/null | tail -n1),)
 	git tag -f -s v$(VERSION)
 	git push --tags --force
 	git push
-	github-changes -o webminal -r webminal --use-commit-body --no-merges
+	github-changes -o megahorn -r megahorn --use-commit-body --no-merges
 	git add CHANGELOG.md
 	git commit -m "Update CHANGELOG.md"
 	git push

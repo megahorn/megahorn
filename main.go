@@ -20,13 +20,13 @@ var (
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 
-	configPath := flag.String("c", "webminal.json", "config json file path")
+	configPath := flag.String("c", "megahorn.json", "config json file path")
 
 	flag.Usage = func() {
-		fmt.Printf("webminal v%s (%s)\n\n", Version, Build)
+		fmt.Printf("megahorn v%s (%s)\n\n", Version, Build)
 		fmt.Println("Usage:")
-		fmt.Println("  webminal [options] cmd [args...]")
-		fmt.Println("  cmd | webminal [options]\n")
+		fmt.Println("  megahorn [options] cmd [args...]")
+		fmt.Println("  cmd | megahorn [options]\n")
 		fmt.Println("Options:")
 		flag.PrintDefaults()
 	}

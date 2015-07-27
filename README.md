@@ -1,14 +1,14 @@
-# Webminal
+# Megahorn
 
-[![Build Status](https://travis-ci.org/webminal/webminal.svg?branch=master)](https://travis-ci.org/webminal/webminal)
-[![GitHub release](https://img.shields.io/github/release/webminal/webminal.svg)](https://github.com/webminal/webminal/releases/latest)
+[![Build Status](https://travis-ci.org/megahorn/megahorn.svg?branch=master)](https://travis-ci.org/megahorn/megahorn)
+[![GitHub release](https://img.shields.io/github/release/megahorn/megahorn.svg)](https://github.com/megahorn/megahorn/releases/latest)
 
 ## Usage
 
 ```shell
-$ webminal ruby -e "10.times { puts 'hello' }"
+$ megahorn ruby -e "10.times { puts 'hello' }"
 # or
-$ tail -f log/access.log | webminal
+$ tail -f log/access.log | megahorn
 ```
 
 ### Options
@@ -17,7 +17,7 @@ $ tail -f log/access.log | webminal
 
 ## Configuration
 
-Please read [documentations](https://github.com/webminal/webminal/wiki).
+Please read [documentations](https://github.com/megahorn/megahorn/wiki).
 
 ## License
 

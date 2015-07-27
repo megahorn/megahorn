@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/webminal/webminal/driver"
+	"github.com/megahorn/megahorn/driver"
 	"io"
 	"os"
 )
