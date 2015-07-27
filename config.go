@@ -8,14 +8,23 @@ import (
 )
 
 type Config struct {
-	Stdout map[string]map[string]string `json:"stdout"`
-	Stderr map[string]map[string]string `json:"stderr"`
+	WorkingDir string                       `json"working_dir"`
+	Env        map[string]string            `json:"env"`
+	Stdout     map[string]map[string]string `json:"stdout"`
+	Stderr     map[string]map[string]string `json:"stderr"`
 }
 
 func newConfig() *Config {
+	wd, err := os.Getwd()
+	if err != nil {
+		wd = ""
+	}
+
 	return &Config{
-		Stdout: map[string]map[string]string{},
-		Stderr: map[string]map[string]string{},
+		WorkingDir: wd,
+		Env:        map[string]string{},
+		Stdout:     map[string]map[string]string{},
+		Stderr:     map[string]map[string]string{},
 	}
 }
 
@@ -74,4 +83,14 @@ func (c *Config) StderrDrviers(echo bool) []io.WriteCloser {
 	}
 
 	return drivers
+}
+
+func (c *Config) Environments() []string {
+	current := os.Environ()
+
+	for key, value := range c.Env {
+		current = append(current, key+"="+value)
+	}
+
+	return current
 }

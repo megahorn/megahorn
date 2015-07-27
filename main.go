@@ -92,6 +92,8 @@ func main() {
 		os.Stdin.Close()
 		runner := exec.Command(cmd, args...)
 
+		runner.Dir = config.WorkingDir
+		runner.Env = config.Environments()
 		runner.Stdout = fakeStdout
 		runner.Stderr = fakeStderr
 
@@ -111,8 +113,15 @@ func main() {
 	fakeStdout.Close()
 	fakeStderr.Close()
 
-	closeAll(oDrivers...)
-	closeAll(eDrivers...)
+	wg.Add(2)
+	go func() {
+		closeAll(oDrivers...)
+		wg.Done()
+	}()
+	go func() {
+		closeAll(eDrivers...)
+		wg.Done()
+	}()
 
 	wg.Wait()
 
@@ -120,9 +129,15 @@ func main() {
 }
 
 func closeAll(closers ...io.WriteCloser) {
+	wg := sync.WaitGroup{}
 	for _, closer := range closers {
-		closer.Close()
+		wg.Add(1)
+		go func(closer io.WriteCloser) {
+			closer.Close()
+			wg.Done()
+		}(closer)
 	}
+	wg.Wait()
 }
 
 func errWithKill(err error) {

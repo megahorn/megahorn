@@ -12,6 +12,7 @@ type RedisDriver struct {
 	command   string
 	wg        sync.WaitGroup
 	sendQueue chan string
+	quit      chan bool
 }
 
 func (r *RedisDriver) Configure(config map[string]string) (err error) {
@@ -51,11 +52,18 @@ func (r *RedisDriver) Configure(config map[string]string) (err error) {
 	}
 
 	r.sendQueue = make(chan string, 32)
+	r.quit = make(chan bool, 1)
 
 	go func() {
-		data := <-r.sendQueue
-		r.redis.Do(r.command, r.key, data)
-		r.wg.Done()
+		for {
+			select {
+			case data := <-r.sendQueue:
+				r.redis.Do(r.command, r.key, data)
+				r.wg.Done()
+			case <-r.quit:
+				return
+			}
+		}
 	}()
 
 	return
@@ -70,5 +78,6 @@ func (r *RedisDriver) Write(data []byte) (int, error) {
 func (r *RedisDriver) Close() error {
 	r.wg.Wait()
 	r.redis.Flush()
+	r.quit <- true
 	return r.redis.Close()
 }
